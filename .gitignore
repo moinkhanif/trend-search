@@ -1,0 +1,7 @@
+node_modules
+.history
+Gemfile.lock
+package-lock.json
+enu.code-workspace
+testcases.rb
+my.rb
