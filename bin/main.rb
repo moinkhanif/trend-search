@@ -4,13 +4,14 @@ require 'geocoder'
 require 'os'
 require 'cgi'
 require 'easy_translate'
+require 'dotenv/load'
 
 def menu
   p 'Please choose your option:'
   p '1. Change Number of Trends to Show'
   p '2. Show Trends from a different country'
-  p '3. Show stories again'
-  p '4. Reset country and trend'
+  p '3. Show stories'
+  p '4. Reset country and number of trend'
   user_i_m = gets.chomp
   if num?(user_i_m)
     case user_i_m.to_i
@@ -59,17 +60,18 @@ def start
   @news = items.xpath('//ht:news_item[1]/ht:news_item_title[1]')
   news_url = items.xpath('//ht:news_item[1]/ht:news_item_url[1]')
   puts
-  p "Top #{@t} Trends in #{@country}"
+  p "Today's Top #{@t} Trends in #{@country}"
   puts
-  EasyTranslate.api_key = 'AIzaSyDbXZlYd7BtgFUEsip0MK7k0594xV2j3rQ'
   @t.times do |i|
-    # p  EasyTranslate.detect (CGI.unescapeHTML(@news[i].text))
-    if EasyTranslate.detect(CGI.unescapeHTML(@news[i].text)) == 'en'
-      p "#{i + 1} #{CGI.unescapeHTML(@news[i].text)}" 
-    else
-      p "#{i + 1} #{CGI.unescapeHTML(@news[i].text)}"
-      p "^Translation: ##{EasyTranslate.translate(CGI.unescapeHTML(@news[i].text), :to => 'en')}"
-      puts
+    p "#{i + 1}. #{CGI.unescapeHTML(@news[i].text)}"
+    begin
+      EasyTranslate.api_key = ENV['TRANSLATE_KEY']
+      if EasyTranslate.detect(CGI.unescapeHTML(@news[i].text)) != 'en'
+        
+        p "^Translation: ##{EasyTranslate.translate(CGI.unescapeHTML(@news[i].text), :to => 'en')}"
+        puts
+      end
+    rescue
     end
   end
   puts
