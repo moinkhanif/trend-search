@@ -55,8 +55,8 @@ class Scraper
     end
   end
 
-  def menu_controller(_usr_i_m)
-    case user_i_m
+  def menu_controller(usr_i_m)
+    case usr_i_m
     when '1'
       start
     when '2'
