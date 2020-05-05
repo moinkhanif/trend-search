@@ -17,7 +17,7 @@ module Change
     end
   rescue StandardError
     p 'Unable to change country! Resetting values...'
-    initialize
+    initialize('US', 'United States')
     menu
   end
 

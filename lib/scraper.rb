@@ -11,9 +11,9 @@ require_relative 'interface'
 class Scraper
   include Change
   include Interface
-  def initialize
-    @country = 'US'
-    @country_name = 'United States'
+  def initialize(country, country_name)
+    @country = country
+    @country_name = country_name
     @t = 5
   end
 
@@ -24,23 +24,19 @@ class Scraper
     items = parsed_page.xpath('//item')
     @news = items.xpath('//ht:news_item[1]/ht:news_item_title[1]')
     @news_url = items.xpath('//ht:news_item[1]/ht:news_item_url[1]')
+  rescue StandardError
+    false
   end
 
   def start
     scrap
     puts
-    p "Today's Top #{@t} Trends in #{@country_name}"
+    p "Today's Top #{@t} Trends in #{@country_name}" unless @news.empty?
     puts
     @t.times do |i|
       news_display(i)
     end
     news_menu
-  rescue StandardError
-    puts
-    p 'This country is unavailable with google trends.'
-    initialize
-    p "Country reset back to #{@country_name}"
-    menu
   end
 
   def num?(num)

@@ -23,7 +23,7 @@ module Interface
     when '3'
       t_changer
     when '4'
-      initialize
+      initialize('US', 'United States')
       puts
       p "Country has been reset to #{@country_name} and number of trends to #{@t}"
       menu
@@ -64,14 +64,13 @@ module Interface
 
   def news_display(num)
     p "#{num + 1}. #{CGI.unescapeHTML(@news[num].text)}".delete('\\"')
-    begin
-      EasyTranslate.api_key = ENV['TRANSLATE_KEY']
-      if EasyTranslate.detect(CGI.unescapeHTML(@news[num].text)) != 'en'
-        p "^Translation: #{EasyTranslate.translate(CGI.unescapeHTML(@news[num].text), to: 'en')}".delete('\\"')
-        puts
-      end
-    rescue StandardError
+    EasyTranslate.api_key = ENV['TRANSLATE_KEY']
+    if EasyTranslate.detect(CGI.unescapeHTML(@news[num].text)) != 'en'
+      p "^Translation: #{EasyTranslate.translate(CGI.unescapeHTML(@news[num].text), to: 'en')}".delete('\\"')
       puts
     end
+  rescue StandardError
+    puts
+    false
   end
 end

@@ -1,4 +1,4 @@
 require_relative '../lib/scraper'
 
-scraper = Scraper.new
+scraper = Scraper.new('US', 'United States')
 scraper.menu
