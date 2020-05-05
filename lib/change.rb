@@ -3,7 +3,7 @@ module Change
     p 'Please enter the country name'
     new_country = gets.chomp
     if new_country.downcase != Geocoder.search(new_country).first.country.downcase
-      p "Did you mean #{Geocoder.search(new_country).first.country}?(y/n)"
+      p "Did you mean #{Geocoder.search(new_country).first.country}? (y/n)"
       c_user_i = gets.chomp
       if c_user_i.downcase == 'y'
         country_change_confirmed(new_country)

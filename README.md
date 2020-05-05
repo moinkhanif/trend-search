@@ -7,26 +7,26 @@
 
 ## About the project
 
-This project is the Capstone Solo project for Ruby section of Microverse curriculum. It utilizes various helpful gems like Nokogiri, geocoder and easy-translate to scrap [Google Trends xml page(<https://trends.google.com/trends/trendingsearches/daily/rss?geo=US)>] for latest trends for a given country.
+This project is the Capstone Solo project for the Ruby section of the Microverse curriculum. It utilizes various helpful gems like Nokogiri, geocoder ,and easy-translate to scrap [Google Trends XML page(<https://trends.google.com/trends/trendingsearches/daily/rss?geo=US)>] for the latest trends for a given country.
 
 ## Requirements
 
 - Once you download the project, please make sure that you have [Ruby](https://www.ruby-lang.org/en/) installed.
-- Make sure to run `bundle` command in the terminal once you are in the work directory
-- You'll also have to setup google api key if you need the translation feature as mentioned [below](#utilizing-the-translation-feature)
-You sgould be good to go after verifying the above details 😄
+- Make sure to run `bundle` command in the terminal once you are in the working directory
+- You'll also have to set up google API key if you need the translation feature as mentioned [below](#utilizing-the-translation-feature)
+You should be good to go after verifying the above details 😄
 
 ## Features
 
 Some of the features of this project include:
 
-- Scraping Google trends xml for information
+- Scraping Google trends XML for information
 
 - Ability to change Country and Information limit
 
 - Resetting values to default
 
-- Translation of forign languages to English if any (Requires Google Cloud API Key)
+- Translation of other languages to English if any (Requires Google Cloud API Key)
 
 - Suggesting locations and prompting user based on country change input
 
@@ -66,16 +66,16 @@ $ ruby bin/main.rb
 "5 or 'q' to Quit"
 ```
 
-On requesting a change in country, the output is as follows:
+On requesting a change in the country, the output is as follows:
 
 ```ruby
 2
 "Please enter the country name"
 Jeju
-"Did you mean South Korea?(y/n)"
+"Did you mean South Korea? (y/n)"
 ```
 
-Once the program gets a confonformation, the program proceeds as:
+Once the program gets a confirmation, the program proceeds as:
 
 ```ruby
 "Country changed to South Korea!"
