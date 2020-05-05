@@ -10,13 +10,13 @@ def menu
   p 'Please choose your option:'
   p '1. Change Number of Trends to Show'
   p '2. Show Trends from a different country'
-  p '3. Show stories'
+  p "3. Show Trends from  #{@country_name}"
   p '4. Reset country and number of trend'
-  p '5. Quit'
+  p "5 or 'q' to Quit"
   user_i_m = gets.chomp
   if num?(user_i_m)
-    case user_i_m.to_i
-    when 1
+    case user_i_m
+    when "1"
       p 'Please enter the number of stories you want to view'
       new_t = gets.chomp
       if num?(new_t) && new_t.to_i <= @news.size
@@ -25,33 +25,50 @@ def menu
       else
         menu
       end
-    when 2
+    when "2"
       p 'Please enter the country name'
       new_country = gets.chomp
       @country = Geocoder.search(new_country).first.country_code.upcase
-      p "country changed to #{Geocoder.search(new_country).first.country}!"
+      @country_name = Geocoder.search(new_country).first.country
+      p "country changed to #{@country_name}!"
+      puts
       menu
-    when 3
-      start
-    when 4
+    when "3"
+      begin
+        start
+      rescue StandardError
+        p 'This country is unavailable with google trends.'
+        ini
+        menu
+      end
+    when "4"
       ini
-      start
-    when 5
+      p "Country has been reset to #{@country_name} and number of trends to #{@t}"
+      puts
+      menu
+    when "5","q"
       p 'Thank you for using Trend Search! Good day!'
+    else
+      p 'invalid Input! Please try again'
+      menu
     end
+  elsif user_i_m.downcase == 'q'
+    p 'Thank you for using Trend Search! Good day!'
   else
-    p 'kayum'
+    p 'invalid Input! Please try again'
+    menu
   end
 end
 
-def num?(i)
-  Integer(i)
+def num?(num)
+  Integer(num)
 rescue StandardError
   false
 end
 
 def ini
   @country = 'US'
+  @country_name = 'United States'
   @t = 5
 end
 
@@ -63,15 +80,15 @@ def start
   @news = items.xpath('//ht:news_item[1]/ht:news_item_title[1]')
   news_url = items.xpath('//ht:news_item[1]/ht:news_item_url[1]')
   puts
-  p "Today's Top #{@t} Trends in #{@country}"
+  p "Today's Top #{@t} Trends in #{@country_name}"
   puts
   @t.times do |i|
-    p "#{i + 1}. #{CGI.unescapeHTML(@news[i].text)}"
+    p "#{i + 1}. #{CGI.unescapeHTML(@news[i].text)}".delete('\\"')
     begin
-      EasyTranslate.api_key = ENV['TRANSLATE_EY']
+      EasyTranslate.api_key = ENV['TRANSLATE_KEY']
       if EasyTranslate.detect(CGI.unescapeHTML(@news[i].text)) != 'en'
 
-        p "^Translation: ##{EasyTranslate.translate(CGI.unescapeHTML(@news[i].text), to: 'en')}"
+        p "^Translation: #{EasyTranslate.translate(CGI.unescapeHTML(@news[i].text), to: 'en')}".delete('\\"')
         puts
       end
     rescue StandardError
@@ -86,13 +103,19 @@ def start
 
   if user_num
     system(OS.open_file_command, news_url[user_in.to_i - 1].text)
+    puts
+    p 'Link opened in the browser window!'
+    puts
+    menu
   else
-    case user_in
+    case user_in.downcase
     when 'q'
       p 'Thank you for using Trend Search! Good day!'
     when 'm'
       menu
     else
+      puts
+      p 'Invalid Input, redirecting to Menu'
       menu
     end
   end
