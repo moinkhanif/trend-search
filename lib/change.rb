@@ -16,7 +16,7 @@ module Change
       country_change_confirmed(new_country)
     end
   rescue StandardError
-    p 'Unable to change country! Resetting values...'
+    p 'An error has occured! Resetting values...'
     initialize('US', 'United States')
     menu
   end
@@ -33,8 +33,9 @@ module Change
   end
 
   def country_change_confirmed(new_country)
-    @country = Geocoder.search(new_country).first.country_code.upcase
-    @country_name = Geocoder.search(new_country).first.country
+    initialize(Geocoder.search(new_country).first.country_code.upcase,Geocoder.search(new_country).first.country)
+    # @country = 
+    # @country_name = 
     puts
     p "Country changed to #{@country_name}!"
     puts
