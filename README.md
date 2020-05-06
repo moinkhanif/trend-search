@@ -7,7 +7,7 @@
 
 ## About the project
 
-This project is the Capstone Solo project for the Ruby section of the Microverse curriculum. It utilizes various helpful gems like Nokogiri, geocoder ,and easy-translate to scrap [Google Trends XML page(<https://trends.google.com/trends/trendingsearches/daily/rss?geo=US)>] for the latest trends for a given country.
+This project is the Capstone Solo project for the Ruby section of the Microverse curriculum. It utilizes various helpful gems like Nokogiri, geocoder ,and easy-translate to scrap Google Trends XML page(<https://trends.google.com/trends/trendingsearches/daily/rss?geo=US>] for the latest trends for a given country.
 
 ## Requirements
 
