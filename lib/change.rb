@@ -33,9 +33,9 @@ module Change
   end
 
   def country_change_confirmed(new_country)
-    initialize(Geocoder.search(new_country).first.country_code.upcase,Geocoder.search(new_country).first.country)
-    # @country = 
-    # @country_name = 
+    initialize(Geocoder.search(new_country).first.country_code.upcase, Geocoder.search(new_country).first.country)
+    # @country =
+    # @country_name =
     puts
     p "Country changed to #{@country_name}!"
     puts
