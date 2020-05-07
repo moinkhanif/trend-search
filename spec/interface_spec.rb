@@ -26,7 +26,7 @@ RSpec.describe Scraper do
       @t = 5
     end
 
-    it 'confirms link open' do
+    it 'detects invalid input' do
       allow(scraper).to receive(:news_menu)
       expect { scraper.news_menu_control('10') }.to output("\"Invalid Input, please try again!\"\n").to_stdout
     end
