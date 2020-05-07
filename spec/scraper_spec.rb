@@ -14,10 +14,14 @@ RSpec.describe Scraper do
     end
   end
 
-  describe '#start' do
+  describe '#scrap' do
+    before do
+      @country = 'UG'
+      @country_name = 'Uganda'
+    end
     it 'returns false when geocode out of scope' do
-      scraperr = Scraper.new('UG', 'Uganda')
-      expect(scraperr.scrap).to be false
+      allow(scraper).to receive(:country_change)
+      expect { scraper.scrap }.to output("\"No information available from Google trends regarding Uganda!\"\n").to_stdout
     end
   end
 end

@@ -6,6 +6,7 @@ AllCops:
     - "Rakefile"
     - "Gemfile"
     - 'my.rb'
+    - 'spec/**/*'
 
   DisplayCopNames: true
 

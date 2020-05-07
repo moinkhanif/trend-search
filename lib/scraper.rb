@@ -26,8 +26,7 @@ class Scraper
     @news_url = items.xpath('//ht:news_item[1]/ht:news_item_url[1]')
   rescue StandardError
     p "No information available from Google trends regarding #{@country_name}!"
-    change_country
-    false
+    country_change
   end
 
   def start
