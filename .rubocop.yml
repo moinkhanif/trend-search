@@ -6,13 +6,14 @@ AllCops:
     - "Rakefile"
     - "Gemfile"
     - 'my.rb'
+    - 'spec/**/*'
 
   DisplayCopNames: true
 
 Layout/LineLength:
-  Max: 120
+  Max: 142
 Metrics/MethodLength:
-  Max: 20
+  Max: 22
 Metrics/AbcSize:
   Max: 50
 Metrics/ClassLength:
