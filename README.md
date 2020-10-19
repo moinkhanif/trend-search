@@ -7,13 +7,13 @@
 
 ## About the project
 
-This project is the Capstone Solo project for the Ruby section of the Microverse curriculum. It utilizes various helpful gems like Nokogiri, geocoder ,and easy-translate to scrap [Google Trends XML page](https://trends.google.com/trends/trendingsearches/daily/rss?geo=US) for the latest trends for a given country.
+This project is the Capstone Solo project for the Ruby section of the Microverse curriculum. It utilizes various helpful gems like Nokogiri, geocoder, and easy-translate to scrap [Google Trends XML page](https://trends.google.com/trends/trendingsearches/daily/rss?geo=US) for the latest trends for a given country.
 
 ## Requirements
 
 - Once you download the project, please make sure that you have [Ruby](https://www.ruby-lang.org/en/) installed.
-- Make sure to run `bundle` command in the terminal once you are in the working directory
-- You'll also have to set up google API key if you need the translation feature as mentioned [below](#utilizing-the-translation-feature)
+- Make sure to run the `bundle` command in the terminal once you are in the working directory
+- You'll also have to set up a Google API key if you need the translation feature as mentioned [below](#utilizing-the-translation-feature)
 You should be good to go after verifying the above details 😄
 
 ## Features
@@ -59,7 +59,7 @@ On the first run, the program produces the following output:
 $ ruby bin/main.rb
 
 "Please choose your option:"
-"1. Show Daily Trends from  United States"
+"1. Show Daily Trends from the United States"
 "2. Show Trends from a different country"
 "3. Change Number of Trends to Show"
 "4. Reset country and number of trend"
@@ -100,7 +100,7 @@ Thus creating a loop until the user quits
 
 - Moin Khan
   - LinkedIn : [@MoinKhanIF](https://www.linkedin.com/in/moinkhanif/)
-  - Personal Website: [MoinKhan.Info](https://moinkhan.info)
+  - Personal Website: [MoinKhanIF.dev](https://moinkhanif.dev)
   - Twitter: [@MoinKhanIF](https://twitter.com/MoinKhanIF)
   
 <!-- MARKDOWN LINKS & IMAGES -->
